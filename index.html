@@ -1,6 +1,30 @@
 <html>
 <head>
 	<title>Red5d's Projects</title>
+
+<style type="text/css">
+
+body { margin:0px }
+
+.project-section {
+border:3px black solid; border-radius:12px; float:left; text-align:center; width:100%;
+}
+
+.project-item-left { 
+width:45%; height:50px; background-color:lightgray; border-radius:12px;
+float:left; margin:20px; padding:10px; text-align:center; text-decoration:none; color:black;
+}
+
+.project-item-right {
+width:45%; height:50px; background-color:lightgray; border-radius:12px;
+float:right; margin:20px; padding:10px; text-align:center; text-decoration:none; color:black;
+}
+
+.project-item-left:hover { background-color:darkgray; }
+.project-item-right:hover { background-color:darkgray; }
+
+</style>
+
 </head>
 
 <body>
@@ -11,24 +35,46 @@
 
 <br><br>
 
-<p style="position:relative; top:10px"><b>GitHub Projects</b></p>
-<div style="border:3px solid black; border-radius:12px">
-<p>
-<a href="https://github.com/Red5d/pushbullet-bash">Pushbullet-bash</a> - A bash shell script to send messages using the PushBullet API.
-<br>
-<a href="https://github.com/Red5d/modsec-analysis">modsec-analysis</a> - ModSecurity error log analysis in bash.
-<br>
-<a href="https://github.com/Red5d/oceanctl">oceanctl</a> - Digital Ocean Droplet Control script
-<br>
-<a href="https://gist.github.com/Red5d/8233212">IP Lookup</a> - A script that uses infosniper.net to retrieve information about IP addresses.
-<br>
-<a href="#">UNCC Class Seats app</a> - (soon to be opensourced) A class-checking app that retrieves the number of available seats left in a class.
+<div style="margin-left:8px; margin-right:14px" id="project-container">
+
+<p style="float:left; position:relative; top:10px"><b>GitHub Projects</b></p><br>
+<div class="project-section">
+
+	<a class="project-item-left" href="https://github.com/Red5d/pushbullet-bash">
+	<p>Pushbullet-bash - A bash shell script to send messages using the PushBullet API.</p>
+	</a>
+
+	<a class="project-item-right" href="https://github.com/Red5d/modsec-analysis">
+	<p>modsec-analysis - ModSecurity error log analysis in bash.</p>
+	</a>
+
+	<a class="project-item-left" href="https://github.com/Red5d/oceanctl">
+	<p>oceanctl - Digital Ocean Droplet Control script</p>
+	</a>
+
+	<a class="project-item-right" href="https://gist.github.com/Red5d/8233212">
+	<p>IP Lookup - A script that uses infosniper.net to retrieve information about IP addresses.</p>
+	</a>
+
+	<a class="project-item-left" href="https://play.google.com/store/apps/details?id=com.daniel.unccseats&hl=en">
+	<p>UNCC Class Seats app - (soon to be opensourced) A class-checking app that retrieves the number of available seats left in a class.</p>
+	</a>
+
 </div>
 
 <br><br>
 
-<p style="position:relative; top:10px"><b>Web Projects</b></p>
-<div>
+<p style="float:left; position:relative; top:20px"><b>Web Projects</b></p>
+<br><br><br>
+<div class="project-section" style="position:relative; top:10px">
+	<a href="#" class="project-item-left">
+	<p>Placeholder1 - a placeholder project</p>
+	</a>
+
+	<a href="#" class="project-item-right">
+	<p>Placeholder2 - another placeholder project</p>
+	</a>
+</div>
 
 </div>
 
