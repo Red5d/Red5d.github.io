@@ -1,0 +1,64 @@
+    248 United States
+    114 China
+     96 Taiwan
+     46 Thailand
+     44 Netherlands
+     31 Germany
+     21 Brazil
+     20 France
+     19 Hong Kong SAR China
+     16 Russia
+     13 Mexico
+     13 Canada
+     12 Poland
+     12 India
+     10 South Korea
+      9 Romania
+      9 Chile
+      8 Turkey
+      8 Spain
+      7 Macau SAR China
+      7 Argentina
+      6 United Kingdom
+      6 Iceland
+      6 Colombia
+      5 Vietnam
+      4 Ukraine
+      4 Sweden
+      4 Indonesia
+      3 Venezuela
+      3 Singapore
+      3 Portugal
+      3 Norway
+      3 Malaysia
+      3 Japan
+      3 Italy
+      3 Greece
+      3 Ecuador
+      2 Tanzania
+      2 Switzerland
+      2 Panama
+      2 Laos
+      2 Ireland
+      2 Hungary
+      2 Denmark
+      2 Czech Republic
+      2 Bolivia
+      1 Sudan
+      1 South Africa
+      1 Slovakia
+      1 Serbia
+      1 Qatar
+      1 Peru
+      1 Paraguay
+      1 Pakistan
+      1 New Zealand
+      1 Latvia
+      1 Iran
+      1 Guatemala
+      1 Croatia
+      1 Costa Rica
+      1 Bulgaria
+      1 Bangladesh
+      1 Bahamas
+      1 Austria
