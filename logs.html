@@ -1,0 +1,85 @@
+<html>
+
+<head>
+<title>Log Analysis</title>
+
+<style type="text/css">
+
+body { margin:0px }
+
+.project-section {
+border:3px black solid; border-radius:12px; float:left; text-align:center; width:100%;
+}
+
+.project-item-left { 
+width:45%; height:50px; background-color:lightgray; border-radius:12px;
+float:left; margin:20px; padding:10px; text-align:center; text-decoration:none; color:black;
+}
+
+.project-item-right {
+width:45%; height:50px; background-color:lightgray; border-radius:12px;
+float:right; margin:20px; padding:10px; text-align:center; text-decoration:none; color:black;
+}
+
+.project-item-left:hover { background-color:darkgray; }
+.project-item-right:hover { background-color:darkgray; }
+
+</style>
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+
+<script type="text/javascript">
+    function mtgox(){
+            $.ajax({
+                url: 'https://cors-anywhere.herokuapp.com/http://preev.com/pulse/source:mtgox/unit:btc,usd',
+                type: 'GET',
+                success: function(res) {
+                    data = $.parseJSON(res);
+                    price = Math.floor(data.markets.mtgox.price);
+                    $("#mtgox").text(price+" BTC");
+                }
+            });
+        }
+</script>
+
+</head>
+
+<body>
+
+<div style="width:100%; height:150px; background-color:green; text-align:center; font-size:42">
+<span style="position:relative;top:50">Log Analysis</span>
+</div>
+
+<p style="text-align: center; font-size: 24px">
+I have collected various logs from my personal development system from approximately the past month for analysis.<br>
+The following information was extracted from the logs:<br>
+<br>
+</p>
+
+<div style="margin-left: 20px; float: left">
+        Firewall (UFW):
+        <ul>
+            <li>Port access attempts that were blocked by the firewall.</li>
+        </ul>
+        
+        SSH failed logins by:
+        <ul>
+            <li>Username</li>
+            <li>IP address</li>
+            <li>Country</li>
+        </ul>
+        
+        Apache failed URL requests (404s) by:
+        <ul>
+            <li>Request URL</li>
+            <li>IP Address</li>
+            <li>Country</li>
+        </ul>
+</div>
+
+<p style="float: right; margin-right: 20px; border: solid 3px" id="log">
+    
+</p>
+
+</body>
+</html>
