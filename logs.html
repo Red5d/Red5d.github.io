@@ -26,17 +26,15 @@ float:right; margin:20px; padding:10px; text-align:center; text-decoration:none;
 
 </style>
 
-<script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
 
 <script type="text/javascript">
-    function mtgox(){
+    function showLog(logURL){
             $.ajax({
-                url: 'https://cors-anywhere.herokuapp.com/http://preev.com/pulse/source:mtgox/unit:btc,usd',
+                url: logURL,
                 type: 'GET',
                 success: function(res) {
-                    data = $.parseJSON(res);
-                    price = Math.floor(data.markets.mtgox.price);
-                    $("#mtgox").text(price+" BTC");
+		  $('#log').html("<u>#&nbsp&nbsp&nbsp&nbspItem</u><br>"+res.replace( /\n/g, '<br \\>' ));
                 }
             });
         }
@@ -59,21 +57,21 @@ The following information was extracted from the logs:<br>
 <div style="margin-left: 20px; float: left">
         Firewall (UFW):
         <ul>
-            <li>Port access attempts that were blocked by the firewall.</li>
+            <li onClick="showLog('log-analysis/firewall/test1.txt');">Port access attempts that were blocked by the firewall.</li>
         </ul>
         
         SSH failed logins by:
         <ul>
-            <li>Username</li>
-            <li>IP address</li>
-            <li>Country</li>
+            <li onClick="showLog('log-analysis/ssh/failed-users.txt');">Username</li>
+            <li onClick="showLog('log-analysis/ssh/failed-ips.txt');">IP address</li>
+            <li onClick="showLog('log-analysis/ssh/failed-countries.txt');">Country</li>
         </ul>
         
         Apache failed URL requests (404s) by:
         <ul>
-            <li>Request URL</li>
-            <li>IP Address</li>
-            <li>Country</li>
+            <li onClick="showLog('log-analysis/http/1month/requests.txt');">Request URL</li>
+            <li onClick="showLog('log-analysis/http/1month/ips.txt');">IP Address</li>
+            <li onClick="showLog('log-analysis/http/1month/countries.txt');">Country</li>
         </ul>
 </div>
 
