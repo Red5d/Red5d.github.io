@@ -7,22 +7,27 @@
 
 body { margin:0px }
 
-.project-section {
-border:3px black solid; border-radius:12px; float:left; text-align:center; width:100%;
+.log-section {
+border:none; text-align:center;
 }
 
-.project-item-left { 
-width:45%; height:50px; background-color:lightgray; border-radius:12px;
-float:left; margin:20px; padding:10px; text-align:center; text-decoration:none; color:black;
+.log-item {
+width:100%; height:20px; background-color:lightgray; border-radius:12px;
+float:left; margin:5px; padding:10px; text-align:center; text-decoration:none; color:black;
 }
 
-.project-item-right {
-width:45%; height:50px; background-color:lightgray; border-radius:12px;
-float:right; margin:20px; padding:10px; text-align:center; text-decoration:none; color:black;
+.log-item p { top:-15px; position:relative }
+
+.log-item:hover { background-color:darkgray; }
+
+table,th,td
+{
+padding-top:10px;padding-right: 10px;padding-left: 10px;border-left: 1px solid black;border-collapse: collapse; text-align: center;
 }
 
-.project-item-left:hover { background-color:darkgray; }
-.project-item-right:hover { background-color:darkgray; }
+td { width:50; }
+
+th { border-bottom: 1px solid black }
 
 </style>
 
@@ -34,7 +39,19 @@ float:right; margin:20px; padding:10px; text-align:center; text-decoration:none;
                 url: logURL,
                 type: 'GET',
                 success: function(res) {
-		  $('#log').html("<u>#&nbsp&nbsp&nbsp&nbspItem</u><br>"+res.replace( /\n/g, '<br \\>' ));
+		  data=res.split('    ');
+		  logData="<table><tr><th># of events</th><th>Item</th></tr>"
+		  //$('#log').html("<table><tr><th># of events</th><th>Item</th></tr>");
+		  for (i=1; i<data.length; i++) {
+		    left=data[i].trim().split(' ')[0];
+		    right=data[i].trim().split(' ')[1]
+		    //$('#log').append("<tr><td style='width:71'>"+left+"</td><td>"+right+"</td></tr>");
+		    logData=logData+"<tr><td style='width:71'>"+left+"</td><td>"+right+"</td></tr>";
+		  }
+		  logData=logData+"</table>";
+		  $('#log').html(logData);
+		  //$('#log').append("</table>");
+		  //$('#log').html("<u>#&nbsp&nbsp&nbsp&nbspItem</u><br>"+res.trim().replace( / /g, '&nbsp;&nbsp;&nbsp;&nbsp;').replace( /\n/g, '<br>' ));
                 }
             });
         }
@@ -49,34 +66,34 @@ float:right; margin:20px; padding:10px; text-align:center; text-decoration:none;
 </div>
 
 <p style="text-align: center; font-size: 24px">
-I have collected various logs from my personal development system from approximately the past month for analysis.<br>
+I have collected various logs from my publicly visible web development system from approximately the past month for analysis.<br>
 The following information was extracted from the logs:<br>
 <br>
 </p>
 
-<div style="margin-left: 20px; float: left">
-        Firewall (UFW):
-        <ul>
-            <li onClick="showLog('log-analysis/firewall/test1.txt');">Port access attempts that were blocked by the firewall.</li>
-        </ul>
-        
+<div style="margin-left: 20%; float: left">
+        Firewall (UFW):<br>
+        <div class="log-section">
+            <a href="#" onClick="showLog('log-analysis/firewall/ufw-blocked-ports.txt');" class="log-item"><p>Port access attempts that were blocked by the firewall.</p></a>
+        </div>
+
         SSH failed logins by:
-        <ul>
-            <li onClick="showLog('log-analysis/ssh/failed-users.txt');">Username</li>
-            <li onClick="showLog('log-analysis/ssh/failed-ips.txt');">IP address</li>
-            <li onClick="showLog('log-analysis/ssh/failed-countries.txt');">Country</li>
-        </ul>
-        
+        <div class="log-section">
+            <a href="#" onClick="showLog('log-analysis/ssh/failed-users.txt');" class="log-item"><p>Username</p></a>
+            <a href="#" onClick="showLog('log-analysis/ssh/failed-ips.txt');" class="log-item"><p>IP address</p></a>
+            <a href="#" onClick="showLog('log-analysis/ssh/failed-countries.txt');" class="log-item"><p>Country</p></a>
+        </div>
+
         Apache failed URL requests (404s) by:
-        <ul>
-            <li onClick="showLog('log-analysis/http/1month/requests.txt');">Request URL</li>
-            <li onClick="showLog('log-analysis/http/1month/ips.txt');">IP Address</li>
-            <li onClick="showLog('log-analysis/http/1month/countries.txt');">Country</li>
-        </ul>
+        <div class="log-section">
+            <a href="#" onClick="showLog('log-analysis/http/1month/requests.txt');" class="log-item">Request URL</p></a>
+            <a href="#" onClick="showLog('log-analysis/http/1month/ips.txt');" class="log-item">IP Address</p></a>
+            <a href="#" onClick="showLog('log-analysis/http/1month/countries.txt');" class="log-item">Country</p></a>
+        </div>
 </div>
 
-<p style="float: right; margin-right: 20px; border: solid 3px" id="log">
-    
+<p style="float: left; margin-left: 20%; border: solid 3px" id="log">
+
 </p>
 
 </body>
