@@ -34,7 +34,7 @@ th { border-bottom: 1px solid black }
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
 
 <script type="text/javascript">
-    function showLog(logURL){
+    function showLog(logURL, itemID){
             $.ajax({
                 url: logURL,
                 type: 'GET',
@@ -50,11 +50,16 @@ th { border-bottom: 1px solid black }
 		  }
 		  logData=logData+"</table>";
 		  $('#log').html(logData);
+		  $('.log-item').css("background-color", "");
+		  $('#'+itemID).css("background-color", "darkgray");
 		  //$('#log').append("</table>");
 		  //$('#log').html("<u>#&nbsp&nbsp&nbsp&nbspItem</u><br>"+res.trim().replace( / /g, '&nbsp;&nbsp;&nbsp;&nbsp;').replace( /\n/g, '<br>' ));
                 }
             });
         }
+    
+    
+    showLog('log-analysis/firewall/ufw-blocked-ports.txt', 'ufwports');
 </script>
 
 </head>
@@ -66,29 +71,29 @@ th { border-bottom: 1px solid black }
 </div>
 
 <p style="text-align: center; font-size: 24px">
-I have collected various logs from my publicly visible web development system from approximately the past month for analysis.<br>
+I have collected various logs from my Internet-facing web development system from approximately the past month for analysis.<br>
 The following information was extracted from the logs:<br>
 <br>
 </p>
 
 <div style="margin-left: 20%; float: left">
         Firewall (UFW):<br>
-        <div class="log-section">
-            <a href="#" onClick="showLog('log-analysis/firewall/ufw-blocked-ports.txt');" class="log-item"><p>Port access attempts that were blocked by the firewall.</p></a>
+        <div class="log-section" style="padding-bottom: 80px">
+            <a href="#" id="ufwports" onClick="showLog('log-analysis/firewall/ufw-blocked-ports.txt', 'ufwports');" class="log-item"><p>Port access attempts that were blocked by the firewall.</p></a>
         </div>
 
         SSH failed logins by:
-        <div class="log-section">
-            <a href="#" onClick="showLog('log-analysis/ssh/failed-users.txt');" class="log-item"><p>Username</p></a>
-            <a href="#" onClick="showLog('log-analysis/ssh/failed-ips.txt');" class="log-item"><p>IP address</p></a>
-            <a href="#" onClick="showLog('log-analysis/ssh/failed-countries.txt');" class="log-item"><p>Country</p></a>
+        <div class="log-section" style="padding-bottom: 180px">
+            <a href="#" id="sshusers" onClick="showLog('log-analysis/ssh/failed-users.txt', 'sshusers');" class="log-item"><p>Username</p></a>
+            <a href="#" id="sships" onClick="showLog('log-analysis/ssh/failed-ips.txt', 'sships');" class="log-item"><p>IP address</p></a>
+            <a href="#" id="sshcountry" onClick="showLog('log-analysis/ssh/failed-countries.txt', 'sshcountry');" class="log-item"><p>Country</p></a>
         </div>
 
         Apache failed URL requests (404s) by:
         <div class="log-section">
-            <a href="#" onClick="showLog('log-analysis/http/1month/requests.txt');" class="log-item">Request URL</p></a>
-            <a href="#" onClick="showLog('log-analysis/http/1month/ips.txt');" class="log-item">IP Address</p></a>
-            <a href="#" onClick="showLog('log-analysis/http/1month/countries.txt');" class="log-item">Country</p></a>
+            <a href="#" id="404url" onClick="showLog('log-analysis/http/1month/requests.txt', '404url');" class="log-item">Request URL</p></a>
+            <a href="#" id="404ip" onClick="showLog('log-analysis/http/1month/ips.txt', '404ip');" class="log-item">IP Address</p></a>
+            <a href="#" id="404country" onClick="showLog('log-analysis/http/1month/countries.txt', '404country');" class="log-item">Country</p></a>
         </div>
 </div>
 
