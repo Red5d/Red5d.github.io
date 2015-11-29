@@ -1,0 +1,134 @@
+<html>
+<head>
+<title>Word Typing Efficiency</title>
+
+<script src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
+
+<script type="text/javascript">
+$( document ).ready(function(){
+    one = ['q','a','z']
+    two = ['w','s','x']
+    three = ['e','d']
+    four = ['r','f','c','t','g','v','b']
+    seven = ['y','h','n','u','j','m']
+    eight = ['i','k']
+    nine = ['o','l']
+    ten = ['p']
+    
+    var letters = {};
+    letters['q'] = {near: ['w','s','a'], hand: "left", finger: 1}
+    letters['w'] = {near: ['q','a','s','d','e'], hand: "left", finger: 2}
+    letters['e'] = {near: ['w','s','d','r','f'], hand: "left", finger: 3}
+    letters['r'] = {near: ['e','d','f','g','t'], hand: "left", finger: 4}
+    letters['t'] = {near: ['r','f','g'], hand: "left", finger: 4}
+    letters['y'] = {near: ['u','j','h'], hand: "right", finger: 7}
+    letters['u'] = {near: ['y','h','j','k','i'], hand: "right", finger: 7}
+    letters['i'] = {near: ['u','j','k','l','o'], hand: "right", finger: 8}
+    letters['o'] = {near: ['i','k','l','p'], hand: "right", finger: 9}
+    letters['p'] = {near: ['o','l'], hand: "right", finger: 10}
+    letters['a'] = {near: ['q','w','s','x','z'], hand: "left", finger: 1}
+    letters['s'] = {near: ['a','q','w','e','d','c','x','z'], hand: "left", finger: 2}
+    letters['d'] = {near: ['s','w','e','r','f','v','c','x'], hand: "left", finger: 3}
+    letters['f'] = {near: ['d','e','r','t','g','v','c'], hand: "left", finger: 4}
+    letters['g'] = {near: ['t','r','f','v','b'], hand: "left", finger: 4}
+    letters['h'] = {near: ['y','u','j','n'], hand: "right", finger: 7}
+    letters['j'] = {near: ['y','u','i','k','m','n','h'], hand: "right", finger: 7}
+    letters['k'] = {near: ['u','i','o','l','m','j'], hand: "right", finger: 8}
+    letters['l'] = {near: ['k','i','o','p'], hand: "right", finger: 9}
+    letters['z'] = {near: ['a','s','x'], hand: "left", finger: 1}
+    letters['x'] = {near: ['z','s','d','c'], hand: "left", finger: 2}
+    letters['c'] = {near: ['x','d','f','v'], hand: "left", finger: 4}
+    letters['v'] = {near: ['c','f','g','b'], hand: "left", finger: 4}
+    letters['b'] = {near: ['v','g'], hand: "left", finger: 4}
+    letters['n'] = {near: ['h','n'], hand: "right", finger: 7}
+    letters['m'] = {near: ['n','j','k'], hand: "right", finger: 7}
+    
+    function getPoints(word){
+        prevLetter = "";
+        points = 0;
+        for (var i = 0, len = word.length; i < len; i++) {
+            if (prevLetter == ""){
+                prevLetter = word[i];
+            } else {
+                if (letters[prevLetter].hand == letters[word[i]].hand){
+                    //console.log(prevLetter+" is on the same hand as "+word[i]);
+                    $("#results").append("<p><span style='margin-right: 20px'>+1:</span> <b>"+prevLetter+"</b> is on the same hand as <b>"+word[i]+"</b></p>");
+                    points++;
+                    if (letters[prevLetter].near.indexOf(word[i]) < 0){
+                        //console.log("    "+prevLetter+" is not near "+word[i]);
+                        $("#results").append("<p><span style='margin-right: 40px'>+0.5:</span> <b>"+prevLetter+"</b> is not near <b>"+word[i]+"</b></p>");
+                        if (letters[prevLetter].finger == letters[word[i]].finger){
+                            //console.log("    and it uses the same finger.");
+                            $("#results").append("<p><span style='margin-right: 40px'>+0.5:</span> and it uses the same finger.</p>");
+                            points++;
+                        } else {
+                            points = points + 0.5;
+                        }
+                    }
+                }
+                prevLetter = word[i];
+            }
+        }
+        return points;
+    }
+
+    $("#wordeval").keypress(function(event){
+        var keycode = (event.keyCode ? event.keyCode : event.which);
+        if(keycode == '13'){
+            $("#results").empty();
+            $("#scoreNum").text("Rating: "+getPoints($("#wordeval").val()));
+            $("#scoreBox").show();
+            $("#results").show();
+        }
+    });
+});
+</script>
+
+
+
+<style>
+input[type=text] {
+    border: 5px solid black; 
+    padding: 10px;
+    background: rgba(255,255,255,0.5);
+    margin: 0 0 7px 0;
+    font-size: 14px
+}
+
+body {margin: 0px; font-family: "sans-serif"}
+
+#results {
+    text-align: justify;
+    display: inline-block;
+    line-height: 200%;
+    border-top: solid darkred;
+    padding-left: 3%;
+    margin-left: 40%;
+    width: 20%;
+    display: none
+}
+
+</style>
+
+</head>
+
+<body>
+
+<div style="background-color: darkgreen; border-radius: 20px; top: -40px; height: 80px; position: relative">
+    <!--<p id="help" style="position: relative; top: 35px; float: right; margin-right: 20px"><b>Help</b></p>-->
+</div>
+    
+<div style="text-align: center; top: -20px; position: relative">
+    <h1>Word Typing Efficiency</h1>
+    <input type="text" id="wordeval" placeholder="Type a word here" autofocus style="width: 300px" /><button style="display: none" id="search">Search</button><br>
+    <div id="scoreBox" style='text-align: center; display: none'>
+    <p id="scoreNum"></p>
+    <p>(Lower is more efficient)</p>
+    </div>   
+
+<div id="results"></div>
+    
+</div>
+
+</body>
+</html>
