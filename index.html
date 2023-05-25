@@ -4,6 +4,15 @@
     <title>Daniel Colson's Links</title>
     <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"> -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/fork-awesome@1.2.0/css/fork-awesome.min.css" integrity="sha256-XoaMnoYC5TH6/+ihMEnospgm0J1PM/nioxbOUdnM8HY=" crossorigin="anonymous">
+
+    <script src="https://code.createjs.com/easeljs-0.7.1.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/1.18.0/TweenMax.min.js"></script>
+    
+    <link rel="stylesheet" href="background.css">
+    
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -11,14 +20,18 @@
         }
         
         h1 {
-            margin-top: 40px;
+            /* margin-top: 40px; */
+            position: relative;
+            z-index: 1;
         }
         
         .link {
             display: flex;
             align-items: center;
             justify-content: center;
-            margin: 20px 0;   
+            margin: 20px 0;
+            position:relative;
+            z-index:1;
         }
         
         .link a {
@@ -32,37 +45,57 @@
             border-radius: 5px;
             padding: 10px;
             transition: background-color 0.2s ease-in-out;
+            background-color: lightgray;
         }
         
         .link a:hover {
-            background-color: lightgray;
+            background-color: lightsteelblue;
         }
 
         .link a i {
             margin-right: 10px;
         }
+
+        #content {
+            background-color: rgb(211, 211, 211, 0.3); 
+            margin-top:25%; 
+            width:fit-content; 
+            margin-left:auto; 
+            margin-right:auto; 
+            padding:30px; 
+            border-radius:10px;
+        }
     </style>
 </head>
 <body>
-    <h1 style="margin-top:20%; margin-bottom:50px">Daniel Colson</h1>
+    <canvas id="projector">Your browser does not support the Canvas element.</canvas>
     
-    <div class="link">
-        <a href="https://github.com/Red5d" target="_blank">
-            <i class="fa fa-github"></i>
-            GitHub
-        </a>
+    <div id="content">
+        <h1 style="color:white">Daniel Colson</h1>
+        
+        <div class="link">
+            <a href="https://github.com/Red5d" target="_blank">
+                <i class="fa fa-github"></i>
+                GitHub
+            </a>
+        </div>
+        
+        <div class="link">
+            <a href="https://matrix.to/#/@red5d:dmatrix.duckdns.org" target="_blank">
+                <i class="fa fa-matrix-org"></i>
+                Matrix Chat
+            </a>
+        </div>
+        
+        <div class="link">
+            <a href="https://twitter.com/red5_d" target="_blank">
+                <i class="fa fa-twitter"></i>
+                Twitter
+            </a>
+        </div>
+
     </div>
     
-    <div class="link">
-        <a href="https://matrix.to/#/@red5d:dmatrix.duckdns.org" target="_blank">
-            <i class="fa fa-matrix-org"></i>
-            Matrix Chat
-        </a>
-    </div>
-    
-    <div class="link">
-        <a href="https://twitter.com/red5_d" target="_blank">
-            <i class="fa fa-twitter"></i>
-            Twitter
-        </a>
-    </div
+    <script src="background.js"></script>
+</body>
+</html>
