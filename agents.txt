@@ -1,0 +1,3 @@
+MCP URL: https://mcp.red5d.dev/sse
+Authentication: None
+Transport: SSE
